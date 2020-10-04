@@ -1,4 +1,4 @@
-![bottle.js](https://github.com/bottlejs/bottle.js/blob/master/assets/logo.svg?raw=true)
+![bottle.js](https://github.com/bottlejs/bottle.js/blob/master/assets/logo.svg?raw=true =150x)
 
 Bottle.js is a fast and lightweight Node.js HTTP server framework.
 
