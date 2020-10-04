@@ -7,7 +7,7 @@ Bottle.js is a fast and lightweight Node.js HTTP server framework.
 Using NPM
 
 ```
-npm i bottle.js
+npm i @bottlejs/bottle.js
 ```
 
 ### Using
