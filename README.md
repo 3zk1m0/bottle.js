@@ -16,7 +16,7 @@ Using bottle.js is easy! All you have to do is initialize the router, then add m
 
 `server.js`
 ```js
-const bottle = require('../dist/index');
+const bottle = require('bottle.js');
 const router = bottle.Router;
 
 router.get('/', (req, res) => {
