@@ -28,3 +28,7 @@ app.listen(3000, e => {
   console.log('Your awesome bottle.js server is running on port 3000!');
 });
 ```
+
+### Notice
+
+Please note that this project is currently in progress and not all stated features are finished.
