@@ -1,9 +1,6 @@
 # BottleJS
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbottlejs%2Fbottle.js.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbottlejs%2Fbottle.js?ref=badge_shield)
 
-
-![License Scan](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbottlejs%2Fbottle.js.svg?type=shield)
-
 Bottle.js is a fast and lightweight Node.js HTTP server framework.
 
 ### Installation
