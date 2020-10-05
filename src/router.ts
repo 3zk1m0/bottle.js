@@ -1,39 +1,46 @@
 import * as http from 'http';
 import * as url from 'url';
 
+import { Parse } from './parser'
+
 class Routing {
   public paths: any;
 
   constructor() {
-    this.paths = {};
+    this.paths = {
+      GET: {},
+      POST: {},
+      PUT: {},
+      DELETE: {}
+    };
   }
 
   get = (path: string, next: Function) => {
-    if(this.paths[path]) throw new Error(`Duplicate pathname: ${path}`);
-    else this.paths[path] = {
+    if(this.paths['GET'][path]) throw new Error(`Duplicate GET pathname: ${path}`);
+    else this.paths['GET'][path] = {
       method: 'GET',
       exec: next
     };
   }
   post = (path: string, next: Function) => {
-    if(this.paths[path]) throw new Error(`Duplicate pathname: ${path}`);
-    else this.paths[path] = {
+    if(this.paths['POST'][path]) throw new Error(`Duplicate POST pathname: ${path}`);
+    else this.paths['POST'][path] = {
       method: 'POST',
       exec: next
     };
   }
   put = (path: string, next: Function) => {
-    if(this.paths[path]) throw new Error(`Duplicate PUT pathname: ${path}`);
-    else this.paths[path] = {
+    if(this.paths['PUT'][path]) throw new Error(`Duplicate PUT pathname: ${path}`);
+    else this.paths['PUT'][path] = {
       method: 'PUT',
       exec: next
     };
   }
 
   delete = (path: string, next: Function) => {
-    if(this.paths[path]) throw new Error(`Duplicate pathname: ${path}`);
-    else this.paths[path] = {
-      method: 'PUT',
+    if(this.paths['DELETE'][path]) throw new Error(`Duplicate DELETE pathname: ${path}`);
+    else this.paths['DELETE'][path] = {
+      method: 'DELETE',
       exec: next
     };
   }
@@ -45,9 +52,10 @@ class Routing {
 
     http.createServer((req,res) => {
       let path = url.parse(req.url).pathname;
-      if(req.method == this.paths[path].method) this.paths[path].exec(req, res);
-    }).listen(copy.port, copy.hostname, () => {
-      if(next) next;
+      let method = req.method;
+      if(this.paths[method][path]) Parse(req, res, this.paths[method][path].exec);
+    }).listen(copy.port, copy.hostname, (...d: any) => {
+      if(next) next(d);
     });
   }
 }
