@@ -62,7 +62,7 @@ router.listen({
 
 Please note that this project is currently in progress and not all stated features are finished, you should avoid using Bottle.js in production as of this time, thank you.
 
-### For Hacktoberfest Participatns:
+### For Hacktoberfest:
 
 Hey there people coming in looks of getting your Hacktoberfest pull requests up! There are several features that I don't really know how to add but are extremely important to Bottle! Note, you don't have to completely make this on your own! You can just get started and have other build on top of your work and even add more to it later, any contribution helps!
 
