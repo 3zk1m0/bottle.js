@@ -68,6 +68,8 @@ Hey there people coming in looks of getting your Hacktoberfest pull requests up!
 
 #### Middleware
 
+**NOTE: BASIC SUPPORT FOR MIDDLEWARE HAS BEEN ADDED, YOU CAN STILL ADD ON TO IT**
+
 One feature that we need is middleware! Middleware would allow for a much better programming enviornment and allowing creators to publish 'extentsions' of the package! Here's an example of how middleware would work:
 
 ```js
