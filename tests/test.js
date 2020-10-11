@@ -1,7 +1,11 @@
 const bottle = require('../dist/index');
 const router = bottle.Router;
 
-router.get('/', (req, res) => {
+function middleware(req, res, next) {
+  console.log('middleware is cool!');
+}
+
+router.get('/', middleware, (req, res) => {
   res.setHeader('Content-Type', 'text/html');
   res.end('<h1>Hi!</h1><form action="/cool" method="POST"><input name="value" placeholder="name"/><input name="other" /><button>Epic POST request!</button></form>');
 });

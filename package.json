@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/bottlejs/bottle.js#readme",
   "devDependencies": {
-    "@types/node": "^14.11.2"
+    "@types/node": "^14.11.8",
+    "nodemon": "^2.0.4"
   },
   "directories": {
     "test": "tests"
