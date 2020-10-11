@@ -15,33 +15,33 @@ class Routing {
     };
   }
 
-  get = (path: string, next: Function) => {
+  get = (path: string, ...next: Function[]) => {
     if(this.paths['GET'][path]) throw new Error(`Duplicate GET pathname: ${path}`);
     else this.paths['GET'][path] = {
       method: 'GET',
-      exec: next
+      exec: (req: any, res: any) => next.forEach((n: Function) => n(req, res))
     };
   }
-  post = (path: string, next: Function) => {
+  post = (path: string, ...next: Function[]) => {
     if(this.paths['POST'][path]) throw new Error(`Duplicate POST pathname: ${path}`);
     else this.paths['POST'][path] = {
       method: 'POST',
-      exec: next
+      exec: (req: any, res: any) => next.forEach((n: Function) => n(req, res))
     };
   }
-  put = (path: string, next: Function) => {
+  put = (path: string, ...next: Function[]) => {
     if(this.paths['PUT'][path]) throw new Error(`Duplicate PUT pathname: ${path}`);
     else this.paths['PUT'][path] = {
       method: 'PUT',
-      exec: next
+      exec: (req: any, res: any) => next.forEach((n: Function) => n(req, res))
     };
   }
 
-  delete = (path: string, next: Function) => {
+  delete = (path: string, ...next: Function[]) => {
     if(this.paths['DELETE'][path]) throw new Error(`Duplicate DELETE pathname: ${path}`);
     else this.paths['DELETE'][path] = {
       method: 'DELETE',
-      exec: next
+      exec: (req: any, res: any) => next.forEach((n: Function) => n(req, res))
     };
   }
 
