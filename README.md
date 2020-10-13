@@ -94,11 +94,17 @@ This is another major feature that Bottle is currently missing! This would allow
 (server.js)
 ```js
 const bottle = require('@bottlejs/bottle.js');
+const cons = require('consolidate');
+
 const router = bottle.Router;
 
-router.renderer(function(req, res, next){
+router.renderer('your_template_language', (path, data, callback) => {
   // template engine code
-});
+})
+
+// renderer can be used with consolidate
+const cons = require('consolidate');
+router.renderer('hbs', cons.handlebars)
 
 router.get('/', yourMiddleware, (req, res) => {
   res.render('file.your_template_language', {message:'This is data!'});
