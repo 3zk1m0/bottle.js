@@ -1,6 +1,8 @@
 import * as url from 'url';
+import { RenderEngine } from "./types";
 
-function Parse(req: any, res: any, next: Function) {
+
+function Parse(req: any, res: any, next: Function, renderEngine: RenderEngine) {
   let builder: any;
   let use: any = {};
 
@@ -42,6 +44,13 @@ function Parse(req: any, res: any, next: Function) {
     }
   }
   
+  res.render = async (path: string, data:object, callback:Function):Promise<void> => {
+    const index = path.lastIndexOf('.');
+    const fileType = path.substring(index + 1);
+    res.setHeader('Content-Type', 'text/html');
+    res.end(await renderEngine[fileType](path, data, callback))
+  }
+
   if (req.method) {
     let body: any = [];
     req.on('data', (chunk: any) => {

@@ -2,9 +2,11 @@ import * as http from 'http';
 import * as url from 'url';
 
 import { Parse } from './parser'
+import { RenderEngine, RenderEngineFunc } from "./types";
 
 class Routing {
   public paths: any;
+  public renderEngine: RenderEngine = {};
 
   constructor() {
     this.paths = {
@@ -45,6 +47,13 @@ class Routing {
     };
   }
 
+  renderer = (fileType: string, renderEngine: RenderEngineFunc):void =>  {
+    if(this.renderEngine.hasOwnProperty(fileType)) throw new Error(`Duplicate rendered for filetype: ${fileType}`);
+    else {
+      this.renderEngine[fileType] = renderEngine
+    }
+  }
+
   listen = (options: object, next?: Function) => {
     let copy: any = options;
     if(!copy.port) throw new Error('Missing listen PORT');
@@ -53,7 +62,7 @@ class Routing {
     http.createServer((req,res) => {
       let path = url.parse(req.url).pathname;
       let method = req.method;
-      if(this.paths[method][path]) Parse(req, res, this.paths[method][path].exec);
+      if(this.paths[method][path]) Parse(req, res, this.paths[method][path].exec, this.renderEngine);
     }).listen(copy.port, copy.hostname, (...d: any) => {
       if(next) next(d);
     });
