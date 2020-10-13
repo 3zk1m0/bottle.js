@@ -1,6 +1,10 @@
 const bottle = require('../dist/index');
 const router = bottle.Router;
 
+const cons = require('consolidate');
+
+router.renderer('hbs', cons.handlebars)
+
 function middleware(req, res, next) {
   console.log('middleware is cool!');
 }
@@ -12,6 +16,10 @@ router.get('/', middleware, (req, res) => {
 
 router.get('/filetest', (req, res) => {
   res.sendFile(__dirname + '/index.html');
+})
+
+router.get('/render', (req, res) => {
+  res.render(__dirname + '/index.hbs', {title: 'rendered title'})
 })
 
 router.post('/cool', (req, res) => {
